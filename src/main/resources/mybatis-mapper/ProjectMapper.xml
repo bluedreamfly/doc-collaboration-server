@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzh.doc.data.mapper.ProjectMapper">
+    <resultMap id="BaseResultMap" type="com.hzh.doc.domain.Project">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="user_ids" property="userIds" />
+        <result column="member_num" property="memberNum" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, user_ids, member_num
+    </sql>
+
+    <select id="select" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from directory
+        where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from project
+    </select>
+
+    <select id="findByUid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from u_battery_apply_record
+        where uid = #{uid}
+    </select>
+
+    <delete id="delete" >
+        delete from directory
+        where id = #{id}
+    </delete>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into project
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null ">
+                id,
+            </if>
+            <if test="name != null ">
+                name,
+            </if>
+            <if test="memberNum != null ">
+                member_num,
+            </if>
+            <if test="userIds != null ">
+                user_ids,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null ">
+                #{id},
+            </if>
+            <if test="name != null ">
+                #{name},
+            </if>
+            <if test="memberNum != null ">
+                #{memberNum},
+            </if>
+            <if test="userIds != null ">
+                #{userIds},
+            </if>
+        </trim>
+    </insert>
+</mapper>

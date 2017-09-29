@@ -1,7 +1,6 @@
-package com.hzh.doc.Advice;
+package com.hzh.doc.advice;
 
-import com.hzh.doc.Exception.ResponseException;
-import org.springframework.validation.BindException;
+import com.hzh.doc.exception.ResponseException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

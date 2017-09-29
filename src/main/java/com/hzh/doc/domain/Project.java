@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class User implements Serializable{
+public class Project implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -14,10 +14,7 @@ public class User implements Serializable{
 
     private String name;
 
-    private String email;
+    private Integer memberNum;
 
-    private String password;
-
-    private List<String> projectIds;
-
+    private String userIds;
 }

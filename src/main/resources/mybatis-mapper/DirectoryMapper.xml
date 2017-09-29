@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzh.doc.data.mapper.DirectoryMapper">
+    <resultMap id="BaseResultMap" type="com.hzh.doc.domain.Directory">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="dir_id" property="dirId" />
+        <result column="project_id" property="projectId" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, add_time, update_time, dir_id, project_id
+    </sql>
+
+    <select id="select" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from directory
+        where id = #{id}
+    </select>
+
+    <select id="findAllByProjectId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from directory
+        where project_id = #{projectId}
+    </select>
+
+    <update id="update" >
+        update directory
+        <set>
+            <if test="name != null ">
+                name = #{name},
+            </if>
+            <if test="addTime != null ">
+                add_time = #{addTime},
+            </if>
+            <if test="updateTime != null ">
+                update_time = #{updateTime},
+            </if>
+            <if test="projectId != null ">
+                project_id = #{projectId},
+            </if>
+            <if test="dirId != null ">
+                dir_id = #{dirId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delete" >
+        delete from directory
+        where id = #{id}
+    </delete>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into directory
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null ">
+                id,
+            </if>
+            <if test="name != null ">
+                name,
+            </if>
+            <if test="dirId != null ">
+                dir_id,
+            </if>
+            <if test="addTime != null ">
+                add_time,
+            </if>
+            <if test="updateTime != null ">
+                update_time,
+            </if>
+            <if test="projectId != null ">
+                project_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null ">
+                #{id},
+            </if>
+            <if test="name != null ">
+                #{name},
+            </if>
+            <if test="dirId != null ">
+                #{dirId},
+            </if>
+            <if test="addTime != null ">
+                #{addTime},
+            </if>
+            <if test="updateTime != null ">
+                #{updateTime},
+            </if>
+            <if test="projectId != null ">
+                #{projectId},
+            </if>
+        </trim>
+    </insert>
+</mapper>

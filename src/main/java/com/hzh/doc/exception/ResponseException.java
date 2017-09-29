@@ -1,4 +1,4 @@
-package com.hzh.doc.Exception;
+package com.hzh.doc.exception;
 
 public class ResponseException extends RuntimeException {
 
