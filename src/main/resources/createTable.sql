@@ -32,3 +32,18 @@ CREATE TABLE `document` (
   `dir_id` VARCHAR(40) NOT NULL COMMENT '文档所属目录id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+#文档接口
+CREATE TABLE `doc_interface` (
+  `id` VARCHAR(40) NOT NULL COMMENT '接口id',
+  `title` VARCHAR(40) NOT NULL COMMENT '接口标题',
+  `type` INTEGER NOT NULL DEFAULT 1 COMMENT '接口类型',
+  `req_params` VARCHAR(1000) NULL COMMENT '请求参数',
+  `res` VARCHAR(2000) NOT NULL COMMENT '响应数据',
+  `path` VARCHAR(300) NOT NULL COMMENT '请求路径',
+  `doc_id` VARCHAR(40) NOT NULL COMMENT '接口所属文档',
+  `method` VARCHAR(10) NOT NULL DEFAULT 'get' '接口请求方法'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '文档接口';
+
+#修改表结构
+alter table `doc_interface`
+  Add column method VARCHAR(10) not null default 'get' AFTER `path`

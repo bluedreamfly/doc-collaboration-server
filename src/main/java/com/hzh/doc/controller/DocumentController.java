@@ -4,7 +4,7 @@ import com.hzh.doc.common.domain.Result;
 import com.hzh.doc.common.util.ResultHelper;
 import com.hzh.doc.exception.ResponseException;
 import com.hzh.doc.domain.Document;
-//import com.hzh.doc.service.DocInterface.IDocInterfaceService;
+//import com.hzh.doc.service.DocInterfaceService.IDocInterfaceService;
 import com.hzh.doc.service.DocumentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,11 +60,16 @@ public class DocumentController {
         return ResultHelper.getSuccessResult(result);
     }
 
+    @RequestMapping(value = "/{docId}", method = RequestMethod.GET)
+    public Result<?> getDocumentDetail(@PathVariable String docId) {
+        return ResultHelper.getSuccessResult(documentService.getDocumentDetail(docId));
+    }
+
 
 
 //
 //    @RequestMapping(value = "/{docId}/interfaces", method = RequestMethod.GET)
-//    public Page<DocInterface> getDocumentInterfaces(@PathVariable Long docId) {
+//    public Page<DocInterfaceService> getDocumentInterfaces(@PathVariable Long docId) {
 //        return docInterfaceService.findBookNoCriteria(1, 2);
 //    }
 

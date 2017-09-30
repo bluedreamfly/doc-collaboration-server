@@ -1,6 +1,8 @@
 package com.hzh.doc.service;
 
+import com.hzh.doc.data.dao.DocInterfaceDAO;
 import com.hzh.doc.data.dao.DocumentDAO;
+import com.hzh.doc.domain.DocInterface;
 import com.hzh.doc.domain.Document;
 import com.hzh.doc.util.GenerateId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import javax.print.Doc;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -17,6 +21,9 @@ public class DocumentService  {
 
     @Autowired
     private DocumentDAO documentDAO;
+
+    @Autowired
+    private DocInterfaceDAO docInterfaceDAO;
 
 
 
@@ -43,6 +50,21 @@ public class DocumentService  {
 
     public Boolean updateDocument(Document document) {
         return documentDAO.updateDocument(document);
+    }
+
+    public Document getDocumentDetail(String docId) {
+
+        List<DocInterface> docInterfaces = docInterfaceDAO.findAllByDocId(docId);
+        Document document = documentDAO.findDocumentById(docId);
+
+        document.setInterfaces(docInterfaces);
+//        Map<String, Object> resultMap = new HashMap<>();
+//
+//        resultMap.put("id", document.getId());
+//        resultMap.put("title", document.getTitle());
+//        resultMap.put("description", document.getDescription());
+//        resultMap.
+        return document;
     }
 
 

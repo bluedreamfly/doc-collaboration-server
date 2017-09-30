@@ -1,11 +1,13 @@
 package com.hzh.doc.domain;
 
 import lombok.Data;
+import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -46,5 +48,6 @@ public class Document implements Serializable {
 
     private String projectId;
 
+    private List<DocInterface> interfaces;
 
 }

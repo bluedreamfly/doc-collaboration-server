@@ -94,11 +94,10 @@ public class ProjectService {
                        docTreeNode.setIsDoc(true);
                        treeNode.getChildren().add(docTreeNode);
                    }
-                   List<Directory> filterDirectories = dirDirMap.get(directory.getId());
-                   if (null != filterDirectories) {
-                       generateData(filterDirectories, dirDocMap,  treeNode, dirDirMap);
-                   }
-
+               }
+               List<Directory> filterDirectories = dirDirMap.get(directory.getId());
+               if (null != filterDirectories) {
+                   generateData(filterDirectories, dirDocMap,  treeNode, dirDirMap);
                }
 
            }
